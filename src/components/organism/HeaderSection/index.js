@@ -20,5 +20,5 @@ export function HeaderSection() {
     )
   );
 
-  Header.append(ClockApp());
+  Header.append(ClockApp(true));
 }
