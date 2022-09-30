@@ -1,0 +1,45 @@
+.button {
+  outline: none;
+  padding: 12px 32px;
+
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--white);
+
+  border-radius: var(--rounded);
+  transition: 0.2s;
+  background-color: #d4d4d4;
+
+  &:active {
+    transform: translate(3px, 6px);
+  }
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  &-primary {
+    background: var(--primary);
+  }
+
+  &-positive {
+    background: var(--positive);
+  }
+
+  &-negative {
+    background: var(--negative);
+  }
+  &-purple {
+    background: var(--purple);
+  }
+  &-pink {
+    background: var(--pink);
+  }
+  &-light-blue {
+    background: var(--light-blue);
+  }
+  &-light-green {
+    background: var(--light-green);
+  }
+}

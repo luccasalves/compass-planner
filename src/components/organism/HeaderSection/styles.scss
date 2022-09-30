@@ -1,5 +1,10 @@
 .header {
+  position: relative;
   background-color: var(--white);
   padding: 10px;
   border-radius: var(--rounded);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
