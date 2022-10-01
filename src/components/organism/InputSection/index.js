@@ -7,15 +7,16 @@ import "./styles.scss";
 
 export function InputSection() {
   const InputSection = document.querySelector(".inputs");
-  const weekDay = getWeekDay("pt-br");
 
   InputSection.append(InputApp("atv", "Atividade", "text"));
-  InputSection.append(SelectApp("DiaSemana", "Dia da semana", week, true));
+  InputSection.append(
+    SelectApp("wd", "DiaSemana", "Dia da semana", week, true)
+  );
   InputSection.append(InputApp("hr", "Horário", "number"));
 
   InputSection.append(
     ActionGroup(
-      ButtonApp("Adicionar Atividade", "positive", () => addActivity(weekDay)),
+      ButtonApp("Adicionar Atividade", "positive", addActivity),
       ButtonApp("Excluir Todos ", "negative")
     )
   );
@@ -41,13 +42,13 @@ function createActivity(id, description, time) {
 }
 
 function createID(inLocal) {
-  if (inLocalStorage == null) {
+  if (inLocal == null) {
     return localStorage.length;
   }
   return inLocal.length;
 }
 
-function hasRegister(activity) {
+function hasRegister(activity, weekDay) {
   if (localStorage.length == 0) {
     localStorage.setItem(`${weekDay}`, JSON.stringify([activity]));
     return;
@@ -56,10 +57,18 @@ function hasRegister(activity) {
 
 //TODO: trocar a label pelo dia da semana do select
 
-function addActivity(weekDay) {
+function addActivity() {
   const activityInput = document.getElementById("atv");
   const hourInput = document.getElementById("hr");
+  let weekDay = document.getElementById("wd").value;
+
+  if (weekDay == "Dia da semana") {
+    alert("Dia da semana da selecionado sera o dia de hoje");
+    weekDay = getWeekDay("pt-br");
+  }
   const inLocalStorage = JSON.parse(localStorage.getItem(weekDay));
+
+  console.log(weekDay);
 
   if (isEmpty(activityInput) || isEmpty(hourInput)) {
     return;
@@ -68,7 +77,7 @@ function addActivity(weekDay) {
   const id = createID(inLocalStorage);
   const activity = createActivity(id, activityInput.value, hourInput.value);
 
-  hasRegister(activity);
+  hasRegister(activity, weekDay);
 
   const a = [...inLocalStorage];
   a.push(activity);

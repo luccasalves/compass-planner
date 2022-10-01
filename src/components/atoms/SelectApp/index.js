@@ -1,9 +1,10 @@
 import "./styles.scss";
 
-export function SelectApp(name, label, options, isObj) {
+export function SelectApp(id, name, label, options, isObj) {
   const SelectApp = document.createElement("select");
   SelectApp.setAttribute("class", "select-app");
   SelectApp.setAttribute("name", name);
+  SelectApp.setAttribute("id", id);
 
   const OptionLabel = document.createElement("option");
   OptionLabel.setAttribute("selected", true);
