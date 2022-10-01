@@ -1,4 +1,4 @@
-import { weekDay } from "../../../utils/date";
+import { getWeekDay, week } from "../../../utils/date";
 import { InputApp } from "../../atoms/InputApp";
 import { SelectApp } from "../../atoms/SelectApp";
 import { ButtonApp } from "../../atoms/ButtonApp";
@@ -7,14 +7,15 @@ import "./styles.scss";
 
 export function InputSection() {
   const InputSection = document.querySelector(".inputs");
+  const weekDay = getWeekDay("pt-br");
 
   InputSection.append(InputApp("atv", "Atividade", "text"));
-  InputSection.append(SelectApp("DiaSemana", "Dia da semana", weekDay, true));
+  InputSection.append(SelectApp("DiaSemana", "Dia da semana", week, true));
   InputSection.append(InputApp("hr", "Horário", "number"));
 
   InputSection.append(
     ActionGroup(
-      ButtonApp("Adicionar Atividade", "positive", addActivity),
+      ButtonApp("Adicionar Atividade", "positive", () => addActivity(weekDay)),
       ButtonApp("Excluir Todos ", "negative")
     )
   );
@@ -31,30 +32,46 @@ function isEmpty(element) {
   return false;
 }
 
-function addActivity() {
+function createActivity(id, description, time) {
+  return {
+    id: id,
+    description: description,
+    time: time,
+  };
+}
+
+function createID(inLocal) {
+  if (inLocalStorage == null) {
+    return localStorage.length;
+  }
+  return inLocal.length;
+}
+
+function hasRegister(activity) {
+  if (localStorage.length == 0) {
+    localStorage.setItem(`${weekDay}`, JSON.stringify([activity]));
+    return;
+  }
+}
+
+function addActivity(weekDay) {
   const activityInput = document.getElementById("atv");
   const hourInput = document.getElementById("hr");
+  const inLocalStorage = JSON.parse(localStorage.getItem(weekDay));
 
   if (isEmpty(activityInput) || isEmpty(hourInput)) {
     return;
   }
 
-  const id = localStorage.length;
-  const activity = {
-    id: id,
-    description: activityInput.value,
-    time: hourInput.value,
-  };
+  const id = createID(inLocalStorage);
 
-  if (localStorage.length == 0) {
-    localStorage.setItem(`atv`, JSON.stringify(activity));
+  const activity = createActivity(id, activityInput.value, hourInput.value);
 
-    return;
-  }
+  //verificando se ha registro existente
+  hasRegister(activity);
 
-  const a = [JSON.parse(localStorage.getItem("atv"))];
+  //concatenando com registros existentes
+  const a = [...inLocalStorage];
   a.push(activity);
-  //TODO:  trocar key atv pelo dia da semana
-  //TODO: fazer func para retornar o dia da semana em pt-br
-  localStorage.setItem(`atv`, JSON.stringify(a));
+  localStorage.setItem(`${weekDay}`, JSON.stringify(a));
 }

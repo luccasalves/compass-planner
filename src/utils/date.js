@@ -1,3 +1,7 @@
+export function getWeekDay(locale) {
+  return new Date().toLocaleDateString(locale, { weekday: "short" });
+}
+
 export function getDate(locale) {
   const day = new Date().getDate();
   const month = new Date().toLocaleDateString(locale, { month: "long" });
@@ -17,11 +21,11 @@ export function getHoursWithSeconds(showSeconds) {
   return `${HH}:${MM}`;
 }
 
-export const weekDay = [
+export const week = [
   { label: "Domingo", value: 0 },
   { label: "Segunda-feira", value: 1 },
   { label: "Terça-feira", value: 2 },
-  { label: "Quart-feira", value: 3 },
+  { label: "Quarta-feira", value: 3 },
   { label: "Quinta-feira", value: 4 },
   { label: "Sexta-feira", value: 5 },
   { label: "Sábado", value: 6 },
