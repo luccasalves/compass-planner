@@ -7,23 +7,16 @@ export function InputApp(id, placeHolder, type) {
   InputApp.setAttribute("placeholder", placeHolder);
   InputApp.classList.add("input-app", `input-app-${type}`);
 
-  InputApp.addEventListener("keyup", (event) => {
+  InputApp.addEventListener("keyup", () => {
     InputApp.classList.remove("input-error");
-    // let wait = type === "number" ? 2500 : 800;
-
-    // clearTimeout(time);
-    // time = setTimeout(() => {}, wait);
   });
 
   if (type == "number") {
-    InputApp.addEventListener("keydown", (event) => {
+    InputApp.addEventListener("keypress", () => {
       if (InputApp.value.length == 2) {
         InputApp.setAttribute("type", "text");
-        InputApp.setAttribute("maxlength", 6);
-        InputApp.value = InputApp.value + "h";
-      }
-      if (InputApp.value.length == 5) {
-        InputApp.value = InputApp.value + "m";
+        InputApp.setAttribute("maxlength", 5);
+        InputApp.value = InputApp.value + ":";
       }
     });
   }

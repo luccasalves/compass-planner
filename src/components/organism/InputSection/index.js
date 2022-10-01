@@ -54,6 +54,8 @@ function hasRegister(activity) {
   }
 }
 
+//TODO: trocar a label pelo dia da semana do select
+
 function addActivity(weekDay) {
   const activityInput = document.getElementById("atv");
   const hourInput = document.getElementById("hr");
@@ -64,13 +66,10 @@ function addActivity(weekDay) {
   }
 
   const id = createID(inLocalStorage);
-
   const activity = createActivity(id, activityInput.value, hourInput.value);
 
-  //verificando se ha registro existente
   hasRegister(activity);
 
-  //concatenando com registros existentes
   const a = [...inLocalStorage];
   a.push(activity);
   localStorage.setItem(`${weekDay}`, JSON.stringify(a));
