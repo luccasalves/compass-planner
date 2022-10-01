@@ -16,6 +16,13 @@ a {
   color: var(--dark);
 }
 
+select,
+input,
+option,
+textarea {
+  cursor: pointer;
+}
+
 .container {
   max-width: var(--container-width);
   width: 100%;
@@ -23,4 +30,10 @@ a {
 
   margin: 0 auto;
   padding: var(--gutter);
+}
+
+@media (max-width: 1366px) {
+  html {
+    font-size: 12px;
+  }
 }

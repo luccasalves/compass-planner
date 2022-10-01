@@ -43,3 +43,13 @@
     background: var(--light-green);
   }
 }
+.button-mobile {
+}
+
+@media (max-width: 475px) {
+  .button-desktop {
+    width: 70px;
+    height: 20px;
+    padding: 2px;
+  }
+}

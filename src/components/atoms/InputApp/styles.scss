@@ -1,0 +1,26 @@
+.input-app {
+  padding: 12px 12px 12px 32px;
+  border-radius: var(--rounded);
+  border: 2px solid var(--positive);
+  background: transparent;
+  max-width: 300px;
+  width: 100%;
+  font-weight: 500;
+
+  transition: 0.2s;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    transform: scale(1.05);
+  }
+}
+
+.input-app-number {
+  padding: 12px;
+  max-width: 100px;
+}
+
+.input-error {
+  border: 3px solid var(--negative);
+}

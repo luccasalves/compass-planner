@@ -1,0 +1,14 @@
+.select-app {
+  padding: 12px;
+  border-radius: var(--rounded);
+  border: 2px solid var(--positive);
+  background: transparent;
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:focus {
+    outline: none;
+    transform: scale(1.05);
+  }
+}
