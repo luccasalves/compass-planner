@@ -17,7 +17,7 @@ export function InputSection() {
   InputSection.append(
     ActionGroup(
       ButtonApp("Adicionar Atividade", "positive", addActivity),
-      ButtonApp("Excluir Todos ", "negative")
+      ButtonApp("Excluir Todos ", "negative", deleteAllActivity)
     )
   );
 }
@@ -43,19 +43,18 @@ function createActivity(id, description, time) {
 
 function createID(inLocal) {
   if (inLocal == null) {
-    return localStorage.length;
+    return 0;
   }
   return inLocal.length;
 }
 
 function hasRegister(activity, weekDay) {
-  if (localStorage.length == 0) {
+  if (localStorage.getItem(weekDay) == null) {
     localStorage.setItem(`${weekDay}`, JSON.stringify([activity]));
     return;
   }
 }
-
-//TODO: trocar a label pelo dia da semana do select
+//TODO: verificar a ordem das verificacoes dos inputs
 
 function addActivity() {
   const activityInput = document.getElementById("atv");
@@ -63,12 +62,10 @@ function addActivity() {
   let weekDay = document.getElementById("wd").value;
 
   if (weekDay == "Dia da semana") {
-    alert("Dia da semana da selecionado sera o dia de hoje");
+    alert("Dia da semana selecionado será o de hoje");
     weekDay = getWeekDay("pt-br");
   }
   const inLocalStorage = JSON.parse(localStorage.getItem(weekDay));
-
-  console.log(weekDay);
 
   if (isEmpty(activityInput) || isEmpty(hourInput)) {
     return;
@@ -82,4 +79,24 @@ function addActivity() {
   const a = [...inLocalStorage];
   a.push(activity);
   localStorage.setItem(`${weekDay}`, JSON.stringify(a));
+}
+
+//TODO: fazer um modal de msg para user
+function deleteAllActivity() {
+  const weekDay = document.getElementById("wd");
+
+  if (weekDay.value == "Dia da semana") {
+    weekDay.classList.add("input-error");
+    setTimeout(() => {
+      alert("Selecione o dia da semana a excluir tarefas");
+    }, 350);
+    return;
+  }
+  if (localStorage.getItem(weekDay.value) == null) {
+    alert(weekDay.value);
+    alert("Não há tarefas nesse dia!");
+    return;
+  }
+  alert(`Toda as tarefas foram excluídas desse dia`);
+  localStorage.removeItem(weekDay.value);
 }

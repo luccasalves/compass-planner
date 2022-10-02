@@ -5,10 +5,14 @@
   background: transparent;
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: 0.1s;
 
   &:focus {
     outline: none;
     transform: scale(1.05);
   }
+}
+
+.input-error {
+  border: 3px solid var(--purple);
 }

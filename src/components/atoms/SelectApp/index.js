@@ -14,6 +14,10 @@ export function SelectApp(id, name, label, options, isObj) {
 
   SelectApp.appendChild(OptionLabel);
 
+  SelectApp.addEventListener("click", () => {
+    SelectApp.classList.remove("input-error");
+  });
+
   if (isObj) {
     options.forEach((option) => {
       const OptionApp = document.createElement("option");
