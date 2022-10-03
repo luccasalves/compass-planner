@@ -1,0 +1,27 @@
+.task-app {
+  position: relative;
+  background-color: var(--glass);
+  padding: 12px 12px 12px 24px;
+  border: solid 2px #fff;
+  width: 600px;
+  min-height: 85px;
+  border-radius: 15px;
+  overflow: hidden;
+
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(8px) saturate(180%);
+
+  p {
+    font-size: 18px;
+  }
+}
+
+.left-bar {
+  width: 12px;
+  height: 100%;
+  background-color: var(--primary);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}

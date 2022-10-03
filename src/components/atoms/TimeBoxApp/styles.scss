@@ -1,0 +1,45 @@
+.time-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: saturate(-30);
+
+  font-size: 16px;
+  p {
+    color: var(--dark);
+  }
+
+  &-primary {
+    background-color: var(--primary-60);
+  }
+  &-purple {
+    background-color: var(--purple-60);
+  }
+  &-pink {
+    background-color: var(--pink-60);
+  }
+  &-secondary {
+    background-color: var(--secondary-60);
+  }
+  &-light-blue {
+    background-color: var(--light-blue-60);
+  }
+  &-light-green {
+    background-color: var(--light-green-60);
+  }
+  &-light-red {
+    background-color: var(--light-red-60);
+  }
+  &-error {
+    background-color: var(--negative-60);
+  }
+  &-white {
+    background-color: var(--white);
+    p {
+      color: var(--dark);
+    }
+  }
+}
