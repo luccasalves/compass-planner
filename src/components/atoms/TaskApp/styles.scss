@@ -24,4 +24,29 @@
   position: absolute;
   top: 0;
   left: 0;
+
+  &-primary {
+    background-color: var(--primary);
+  }
+  &-purple {
+    background-color: var(--purple);
+  }
+  &-pink {
+    background-color: var(--pink);
+  }
+  &-secondary {
+    background-color: var(--secondary);
+  }
+  &-light-blue {
+    background-color: var(--light-blue);
+  }
+  &-light-green {
+    background-color: var(--light-green);
+  }
+  &-light-red {
+    background-color: var(--light-red);
+  }
+  &-error {
+    background-color: var(--negative);
+  }
 }
