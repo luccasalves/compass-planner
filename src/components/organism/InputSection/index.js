@@ -95,7 +95,7 @@ function addActivity() {
   const a = [...inLocalStorage];
   a.push(activity);
   localStorage.setItem(`${weekDay}`, JSON.stringify(a));
-  alert("Tarefa adicionada");
+  // alert("Tarefa adicionada");
   location.reload();
 }
 

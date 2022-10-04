@@ -12,12 +12,15 @@ export function MainSection() {
   const taskCollisionGroup = document.createElement("div");
   const currentDay = JSON.parse(localStorage.getItem(currentTab));
   const tabActive = localStorage.getItem("activeTab");
-  console.log(tabActive);
+  const lineError = document.createElement("div");
+  lineError.className = "line-error";
 
   taskCollisionGroup.classList.add("collision-group");
+  taskCollisionGroup.append(lineError);
   taskGroup.classList.add("task-group");
 
   main.append(TabGroup(), taskGroup);
+
   setTimeout(() => {
     const active = document.getElementById(tabActive);
     active.classList.add("active-tab");
@@ -31,26 +34,37 @@ export function MainSection() {
     taskGroup.append(VoidTask());
     return;
   }
-  let tasksRepeat;
-  let tasksDontRepeat;
+  let tasksRepeat = [];
+  let tasksNotRepeat = [];
+
+  if (currentDay.length == 1) {
+    currentDay.forEach((task) => {
+      taskGroup.append(
+        CardTask(task.time, task.description, task.color, task.id)
+      );
+    });
+    return;
+  }
 
   currentDay.forEach((task) => {
     tasksRepeat = currentDay.filter((t) => task.time == t.time);
-    tasksDontRepeat = currentDay.filter((t) => task.time !== t.time);
+    tasksNotRepeat = currentDay.filter((t) => task.time !== t.time);
+  });
 
+  console.log(tasksRepeat);
+  console.log(tasksNotRepeat);
+
+  tasksNotRepeat.forEach((task) => {
     taskGroup.append(
       CardTask(task.time, task.description, task.color, task.id)
     );
   });
-
-  // tasksDontRepeat.forEach((task) =>
-  //   taskGroup.append(CardTask(task.time, task.description, task.color))
-  // );
-  // tasksRepeat.forEach((task) => {
-  //   taskCollisionGroup.append(CardTask(task.time, task.description, "error"));
-  // });
-
-  // taskGroup.append(taskCollisionGroup);
+  tasksRepeat.forEach((task) => {
+    taskCollisionGroup.append(
+      CardTask(task.time, task.description, "error", task.id)
+    );
+  });
+  taskGroup.append(taskCollisionGroup);
 
   return main;
 }
