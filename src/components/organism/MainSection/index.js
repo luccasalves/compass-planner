@@ -33,19 +33,31 @@ export function MainSection() {
   let tasksRepeat = [];
   let tasksNotRepeat = [];
 
-  currentDay.forEach((el, i, arr) => {
-    arr.forEach((e) => {
-      if (e.id !== el.id && e.time == el.time) {
-        tasksRepeat.push(e);
-      }
+  if (currentDay.length == 1) {
+    currentDay.forEach((task) => {
+      taskGroup.append(
+        CardTask(task.time, task.description, task.color, task.id)
+      );
     });
-  });
+    return;
+  }
 
   currentDay.forEach((task) => {
+    tasksRepeat = currentDay.filter((t) => task.time == t.time);
+    tasksNotRepeat = currentDay.filter((t) => task.time !== t.time);
+  });
+
+  tasksNotRepeat.forEach((task) => {
     taskGroup.append(
       CardTask(task.time, task.description, task.color, task.id)
     );
   });
+  tasksRepeat.forEach((task) => {
+    taskCollisionGroup.append(
+      CardTask(task.time, task.description, "error", task.id)
+    );
+  });
+  taskGroup.append(taskCollisionGroup);
 
   return main;
 }
