@@ -3,7 +3,7 @@
   background-color: var(--glass);
   padding: 12px 12px 12px 24px;
   border: solid 2px #fff;
-  width: 600px;
+  width: 550px;
   min-height: 85px;
   border-radius: 15px;
   overflow: hidden;
@@ -13,6 +13,22 @@
 
   p {
     font-size: 18px;
+  }
+}
+.del-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: var(--dark-red);
+  color: var(--white);
+
+  &:active {
+    transform: translate(3px, 6px);
+  }
+  &:hover {
+    filter: brightness(1.1);
   }
 }
 

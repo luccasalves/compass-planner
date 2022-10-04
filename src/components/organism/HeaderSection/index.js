@@ -30,6 +30,7 @@ function deleteFromStorage() {
   if (userRes.toLocaleLowerCase() == "s") {
     localStorage.clear();
     alert("Dados excluídos");
+    location.reload();
     return;
   }
   alert("Operação cancelada");

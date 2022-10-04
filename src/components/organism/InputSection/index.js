@@ -95,9 +95,8 @@ function addActivity() {
   const a = [...inLocalStorage];
   a.push(activity);
   localStorage.setItem(`${weekDay}`, JSON.stringify(a));
-  setTimeout(() => {
-    location.reload();
-  }, 500);
+  alert("Tarefa adicionada");
+  location.reload();
 }
 
 //TODO: fazer um modal de msg para user

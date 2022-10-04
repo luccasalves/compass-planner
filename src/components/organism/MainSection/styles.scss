@@ -7,3 +7,12 @@
   background-position-x: right;
   background-size: contain;
 }
+.task-group {
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.collision-group {
+  display: flex;
+  gap: 20px;
+}
