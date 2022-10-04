@@ -33,11 +33,12 @@ function isEmpty(element) {
   return false;
 }
 
-function createActivity(id, description, time) {
+function createActivity(id, description, time, color) {
   return {
     id: id,
     description: description,
     time: time,
+    color: color,
   };
 }
 
@@ -46,6 +47,16 @@ function createID(inLocal) {
     return 0;
   }
   return inLocal.length;
+}
+
+function wichColor(day) {
+  if (day == "dom.") return "light-red";
+  if (day == "seg.") return "secondary";
+  if (day == "ter.") return "light-green";
+  if (day == "qua.") return "primary";
+  if (day == "qui.") return "purple";
+  if (day == "sex.") return "light-blue";
+  if (day == "sáb.") return "pink";
 }
 
 function hasRegister(activity, weekDay) {
@@ -72,13 +83,21 @@ function addActivity() {
   }
 
   const id = createID(inLocalStorage);
-  const activity = createActivity(id, activityInput.value, hourInput.value);
+  const activity = createActivity(
+    id,
+    activityInput.value,
+    hourInput.value,
+    wichColor(weekDay)
+  );
 
   hasRegister(activity, weekDay);
 
   const a = [...inLocalStorage];
   a.push(activity);
   localStorage.setItem(`${weekDay}`, JSON.stringify(a));
+  setTimeout(() => {
+    location.reload();
+  }, 500);
 }
 
 //TODO: fazer um modal de msg para user
@@ -99,4 +118,7 @@ function deleteAllActivity() {
   }
   alert(`Toda as tarefas foram excluídas desse dia`);
   localStorage.removeItem(weekDay.value);
+  setTimeout(() => {
+    location.reload();
+  }, 500);
 }

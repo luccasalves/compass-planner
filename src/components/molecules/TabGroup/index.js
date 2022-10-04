@@ -8,13 +8,13 @@ export function TabGroup() {
 
   tabGroup.append(TimeBoxApp("Horário", "white"));
 
-  tabGroup.append(TabApp("Domingo", "primary"));
-  tabGroup.append(TabApp("Segunda", "secondary"));
-  tabGroup.append(TabApp("Terça", "pink"));
-  tabGroup.append(TabApp("Quarta", "light-blue"));
-  tabGroup.append(TabApp("Quinta", "light-green"));
-  tabGroup.append(TabApp("Sexta", "light-red"));
-  tabGroup.append(TabApp("Sábado", "purple"));
+  tabGroup.append(TabApp("Segunda-feira", "secondary", "seg."));
+  tabGroup.append(TabApp("Terça-feira", "light-green", "ter."));
+  tabGroup.append(TabApp("Quarta-feira", "primary", "qua."));
+  tabGroup.append(TabApp("Quinta-feira", "purple", "qui."));
+  tabGroup.append(TabApp("Sexta-feira", "light-blue", "sex."));
+  tabGroup.append(TabApp("Sábado", "pink", "sáb."));
+  tabGroup.append(TabApp("Domingo", "light-red", "dom."));
 
   return tabGroup;
 }
