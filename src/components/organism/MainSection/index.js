@@ -26,10 +26,6 @@ export function MainSection() {
     active.classList.add("active-tab");
   }, 50);
 
-  if (currentTab == null) {
-    localStorage.setItem("currentTab", getWeekDay("pt-br"));
-  }
-
   if (currentTasks == null || currentTasks.length == 0) {
     taskGroup.append(VoidTask());
     return;
@@ -37,34 +33,19 @@ export function MainSection() {
   let tasksRepeat = [];
   let tasksNotRepeat = [];
 
-  if (currentDay.length == 1) {
-    currentDay.forEach((task) => {
-      taskGroup.append(
-        CardTask(task.time, task.description, task.color, task.id)
-      );
+  currentDay.forEach((el, i, arr) => {
+    arr.forEach((e) => {
+      if (e.id !== el.id && e.time == el.time) {
+        tasksRepeat.push(e);
+      }
     });
-    return;
-  }
-
-  currentDay.forEach((task) => {
-    tasksRepeat = currentDay.filter((t) => task.time == t.time);
-    tasksNotRepeat = currentDay.filter((t) => task.time !== t.time);
   });
 
-  console.log(tasksRepeat);
-  console.log(tasksNotRepeat);
-
-  tasksNotRepeat.forEach((task) => {
+  currentDay.forEach((task) => {
     taskGroup.append(
       CardTask(task.time, task.description, task.color, task.id)
     );
   });
-  tasksRepeat.forEach((task) => {
-    taskCollisionGroup.append(
-      CardTask(task.time, task.description, "error", task.id)
-    );
-  });
-  taskGroup.append(taskCollisionGroup);
 
   return main;
 }

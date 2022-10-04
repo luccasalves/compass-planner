@@ -16,7 +16,7 @@ export function TaskApp(text, color, id) {
   delBtn.classList.add("del-btn");
   delBtn.textContent = "Apagar";
 
-  task.addEventListener("click", () => {
+  delBtn.addEventListener("click", () => {
     taskRemove(id);
   });
 
@@ -36,7 +36,9 @@ function taskRemove(taskId) {
     if (task.id === taskId) {
       tasks.splice(taskId, 1);
       localStorage.setItem(currentDay, JSON.stringify(tasks));
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 500);
     }
   }
 }

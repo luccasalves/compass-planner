@@ -22,13 +22,13 @@ export function getHoursWithSeconds(showSeconds) {
 }
 
 export const week = [
-  { label: "Domingo", value: "dom." },
   { label: "Segunda-feira", value: "seg." },
   { label: "Terça-feira", value: "ter." },
   { label: "Quarta-feira", value: "qua." },
   { label: "Quinta-feira", value: "qui." },
   { label: "Sexta-feira", value: "sex." },
   { label: "Sábado", value: "sáb." },
+  { label: "Domingo", value: "dom." },
 ];
 
 export const hours = [
