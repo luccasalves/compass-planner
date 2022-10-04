@@ -15,10 +15,26 @@ export function HeaderSection() {
   );
   Header.append(
     ActionGroup(
-      ButtonApp("Salvar Localstorage", "positive"),
-      ButtonApp("Excluir Localstorage", "negative")
+      ButtonApp("Salvar Localstorage", "positive", saveStorage),
+      ButtonApp("Excluir Localstorage", "negative", deleteFromStorage)
     )
   );
 
   Header.append(ClockApp(true));
+}
+
+function deleteFromStorage() {
+  const userRes = prompt(
+    "Seus dados serão EXCLUÍDOS, deseja prosseguir? \nDigite S para confirmar ou N para cancelar"
+  );
+  if (userRes.toLocaleLowerCase() == "s") {
+    localStorage.clear();
+    alert("Dados excluídos");
+    return;
+  }
+  alert("Operação cancelada");
+}
+
+function saveStorage() {
+  alert("Dados foram salvos !");
 }
