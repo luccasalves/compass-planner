@@ -10,13 +10,18 @@ export function MainSection() {
   const currentTab = localStorage.getItem("currentTab");
   const currentTasks = JSON.parse(localStorage.getItem(currentTab));
   const taskCollisionGroup = document.createElement("div");
-  taskCollisionGroup.classList.add("collision-group");
+  const currentDay = JSON.parse(localStorage.getItem(currentTab));
+  const tabActive = localStorage.getItem("activeTab");
+  console.log(tabActive);
 
+  taskCollisionGroup.classList.add("collision-group");
   taskGroup.classList.add("task-group");
 
   main.append(TabGroup(), taskGroup);
-
-  const currentDay = JSON.parse(localStorage.getItem(currentTab));
+  setTimeout(() => {
+    const active = document.getElementById(tabActive);
+    active.classList.add("active-tab");
+  }, 50);
 
   if (currentTab == null) {
     localStorage.setItem("currentTab", getWeekDay("pt-br"));

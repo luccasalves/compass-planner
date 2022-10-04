@@ -13,10 +13,6 @@
     color: var(--white);
   }
 
-  &:active {
-    transform: scaleX(1.1);
-  }
-
   &:hover {
     filter: brightness(1.05);
   }
@@ -45,4 +41,7 @@
   &-error {
     background-color: var(--negative);
   }
+}
+.active-tab {
+  padding-top: 40px;
 }

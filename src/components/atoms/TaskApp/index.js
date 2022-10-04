@@ -15,6 +15,7 @@ export function TaskApp(text, color, id) {
   const delBtn = document.createElement("button");
   delBtn.classList.add("del-btn");
   delBtn.textContent = "Apagar";
+
   task.addEventListener("click", () => {
     taskRemove(id);
   });

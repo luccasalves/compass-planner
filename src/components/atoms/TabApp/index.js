@@ -5,6 +5,7 @@ import "./styles.scss";
 export function TabApp(label, color, value) {
   const tabApp = document.createElement("div");
   tabApp.classList.add("tab-app", `tab-app-${color}`);
+  tabApp.id = `tab-app-${color}`;
 
   const labelText = document.createElement("p");
   labelText.textContent = label;
@@ -13,7 +14,9 @@ export function TabApp(label, color, value) {
 
   tabApp.addEventListener("click", () => {
     localStorage.setItem("currentTab", value);
+    localStorage.setItem("activeTab", `tab-app-${color}`);
     location.reload();
+    tabApp.classList.add("current-active");
   });
 
   return tabApp;
